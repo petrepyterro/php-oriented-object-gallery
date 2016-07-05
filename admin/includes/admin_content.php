@@ -8,10 +8,9 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $all_users = User::find_all_users();
-        while($row = mysqli_fetch_assoc($all_users)){
-          echo $row['username'];
-        }
+        $user = new User();
+        $found_user = $user->find_user_by_id(1);
+        echo $found_user['username'];
       ?>
       <ol class="breadcrumb">
         <li>
