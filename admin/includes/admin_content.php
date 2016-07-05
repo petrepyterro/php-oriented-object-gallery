@@ -8,8 +8,7 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $user = new User();
-        $all_users = $user->find_all_users();
+        $all_users = User::find_all_users();
         while($row = mysqli_fetch_assoc($all_users)){
           echo $row['username'];
         }
