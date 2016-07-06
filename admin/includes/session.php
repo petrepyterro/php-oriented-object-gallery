@@ -19,6 +19,12 @@ class Session {
       $this->signed_in = TRUE;
     }
   }
+  
+  public function logout(){
+    $this->signed_in = FALSE;
+    unset($this->user_id);
+    unset($_SESSION['user_id']);
+  }
 
   private function check_the_login(){
     if(isset($_SESSION['user_id'])){
