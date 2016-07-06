@@ -8,9 +8,10 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $found_user = User::find_user_by_id(1);
-        $user = User::instantiation($found_user);
-        print_r($user);
+        $users = User::find_all_users();
+        foreach($users as $user){
+          echo $user->username . "<br/>";
+        }
        
       ?>
       <ol class="breadcrumb">
