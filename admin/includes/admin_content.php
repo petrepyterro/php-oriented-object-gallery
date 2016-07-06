@@ -9,8 +9,7 @@
       </h1>
       <?php 
         $user = User::find_user_by_id(2);
-        echo $user->username;
-       
+        echo $user->username; 
       ?>
       <ol class="breadcrumb">
         <li>
