@@ -1,11 +1,11 @@
 <?php
 
 class User {
-  public $id;
-  public $password;
+  public $user_id;
+  public $user_password;
   public $username;
-  public $firstname;
-  public $lastname;
+  public $user_firstname;
+  public $user_lastname;
   
   public static function find_all_users(){
     return self::find_this_query("SELECT * FROM users");
@@ -43,7 +43,7 @@ class User {
     $username = $database->escape_string($username);
     $password = $database->escape_string($password);
     
-    $sql = "SELECT * FROM uisers WHERE username='$username' AND user_password='$password' LIMIT 1";
+    $sql = "SELECT * FROM users WHERE username='$username' AND user_password='$password' LIMIT 1";
     $the_result_array = self::find_this_query($sql);
     return !empty($the_result_array) ? array_shift($the_result_array) : false; 
   }
