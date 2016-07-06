@@ -13,9 +13,16 @@ class User {
   
   public static function find_user_by_id($id){
     
-    $result_set = self::find_this_query("SELECT * FROM users WHERE user_id=$id LIMIT 1");
-    $found_user = mysqli_fetch_array($result_set);
-    return $found_user;
+    $the_result_array = self::find_this_query("SELECT * FROM users WHERE user_id=$id LIMIT 1");
+    return !empty($the_result_array) ? array_shift($the_result_array) : false;
+    /*if (!empty($the_result_array)){
+      $first_element = array_shift($the_result_array);
+      return $first_element;
+    } else {
+      return false;
+    }
+     * 
+     */
   }
   
   public static function find_this_query($sql){
