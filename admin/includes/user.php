@@ -3,6 +3,7 @@
 class User {
   
   protected static $db_table = "users";
+  protected static $db_table_fields = array("username", "user_password", "user_firstname", "user_lastname");
   public $user_id;
   public $user_password;
   public $username;
@@ -71,19 +72,30 @@ class User {
     return array_key_exists($the_attribute, $object_properties);
   }
   
+  protected function properties(){
+    //return get_object_vars($this);
+    
+    $properties = array();
+    foreach(self::$db_table_fields as $db_field){
+      if(property_exists($this, $db_field)){
+        $properties[$db_field] = $this->$db_field;
+      }
+    }
+    return $properties;
+  }
+
+
   public function save(){
     return isset($this->user_id) ? $this->update() : $this->create();
   }
   
   public function create(){
     global $database;
+    $properties = $this->properties();
     
-    $sql = "INSERT INTO " . self::$db_table . " (username, user_password, user_firstname, user_lastname) ";
-    $sql .= "VALUES ('";
-    $sql .= $database->escape_string($this->username) . "','";
-    $sql .= $database->escape_string($this->user_password) . "','";
-    $sql .= $database->escape_string($this->user_firstname) . "','";
-    $sql .= $database->escape_string($this->user_lastname) . "')";
+    
+    $sql = "INSERT INTO " . self::$db_table . "( " . implode(",", array_keys($properties)) .") ";
+    $sql .= "VALUES ('" . implode("', '", array_values($properties)) . "')";
     
     if($database->query($sql)){
       $this->user_id = $database-> the_insert_id();
