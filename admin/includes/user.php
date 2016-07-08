@@ -101,6 +101,17 @@ class User {
     
     return (mysqli_affected_rows($database->connection)==1) ? TRUE : FALSE;
   }
+  
+  public function delete(){
+    global $database;
+    
+    $sql = "DELETE FROM users ";
+    $sql .= "WHERE user_id = " . $database->escape_string($this->user_id); 
+    
+    $database->query($sql);
+    
+    return (mysqli_affected_rows($database->connection)==1) ? TRUE : FALSE;
+  }
 }
 
 
