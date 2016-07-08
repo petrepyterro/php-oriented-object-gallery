@@ -1,6 +1,8 @@
 <?php
 
 class User {
+  
+  protected static $db_table = "users";
   public $user_id;
   public $user_password;
   public $username;
@@ -76,7 +78,7 @@ class User {
   public function create(){
     global $database;
     
-    $sql = "INSERT INTO users (username, user_password, user_firstname, user_lastname) ";
+    $sql = "INSERT INTO " . self::$db_table . " (username, user_password, user_firstname, user_lastname) ";
     $sql .= "VALUES ('";
     $sql .= $database->escape_string($this->username) . "','";
     $sql .= $database->escape_string($this->user_password) . "','";
@@ -94,8 +96,8 @@ class User {
   public function update(){
     global $database;
     
-    $sql = "UPDATE users SET ";
-    $sql .= "username = '" . $database->escape_string($this->username) . "', ";
+    $sql = "UPDATE users " . self::$db_table;
+    $sql .= " SET username = '" . $database->escape_string($this->username) . "', ";
     $sql .= "user_password = '" . $database->escape_string($this->user_password) . "', ";
     $sql .= "user_firstname = '" . $database->escape_string($this->user_firstname) . "', ";
     $sql .= "user_lastname = '" . $database->escape_string($this->user_lastname) . "' ";
@@ -109,8 +111,8 @@ class User {
   public function delete(){
     global $database;
     
-    $sql = "DELETE FROM users ";
-    $sql .= "WHERE user_id = " . $database->escape_string($this->user_id); 
+    $sql = "DELETE FROM " . self::$db_table;
+    $sql .= " WHERE user_id = " . $database->escape_string($this->user_id); 
     
     $database->query($sql);
     
