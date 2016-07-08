@@ -12,7 +12,7 @@
         $user->username = "totalitarianism";
         $user->user_password = "secret";
         $user->user_firstname = "Total";
-        $user->user_lastname = "Mital";
+        $user->user_lastname = "Mital'Obrien";
         
         $user->update();
       ?>
