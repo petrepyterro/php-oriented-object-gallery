@@ -108,12 +108,16 @@ class User {
   public function update(){
     global $database;
     
-    $sql = "UPDATE users " . self::$db_table;
-    $sql .= " SET username = '" . $database->escape_string($this->username) . "', ";
-    $sql .= "user_password = '" . $database->escape_string($this->user_password) . "', ";
-    $sql .= "user_firstname = '" . $database->escape_string($this->user_firstname) . "', ";
-    $sql .= "user_lastname = '" . $database->escape_string($this->user_lastname) . "' ";
-    $sql .= "WHERE user_id = $this->user_id"; 
+    $properties = $this->properties();
+    $properties_pairs = array();
+    
+    foreach ($properties as $key=>$value){
+      $properties_pairs[] = "{$key}='{$value}'"; 
+    }
+    
+    $sql = "UPDATE users " . self::$db_table . " SET ";
+    $sql .= implode(",", $properties_pairs) . " WHERE user_id = $this->user_id";
+    
     
     $database->query($sql);
     

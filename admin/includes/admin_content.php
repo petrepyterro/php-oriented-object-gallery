@@ -8,13 +8,13 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $user = new User();
-        $user->username = "totalitarion";
-        $user->user_password = "secret_password";
+        $user = User::find_user_by_id(8);
+        $user->username = "totalitarianism";
+        $user->user_password = "secret";
         $user->user_firstname = "Total";
-        $user->user_lastname = "Lital";
+        $user->user_lastname = "Mital";
         
-        $user->create();
+        $user->update();
       ?>
       <ol class="breadcrumb">
         <li>
