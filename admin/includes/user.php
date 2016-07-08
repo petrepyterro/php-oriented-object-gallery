@@ -86,6 +86,21 @@ class User {
       return FALSE;
     };
   }
+  
+  public function update(){
+    global $database;
+    
+    $sql = "UPDATE users SET ";
+    $sql .= "username = '" . $database->escape_string($this->username) . "', ";
+    $sql .= "user_password = '" . $database->escape_string($this->user_password) . "', ";
+    $sql .= "user_firstname = '" . $database->escape_string($this->user_firstname) . "', ";
+    $sql .= "user_lastname = '" . $database->escape_string($this->user_lastname) . "' ";
+    $sql .= "WHERE user_id = $this->user_id"; 
+    
+    $database->query($sql);
+    
+    return (mysqli_affected_rows($database->connection)==1) ? TRUE : FALSE;
+  }
 }
 
 
