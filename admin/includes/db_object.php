@@ -2,12 +2,12 @@
 
 class Db_object {
   public static function find_all(){
-    return self::find_this_query("SELECT * FROM ". self::$db_table );
+    return static::find_this_query("SELECT * FROM ". static::$db_table );
   }
   
   public static function find_by_id($id){
     
-    $the_result_array = self::find_this_query("SELECT * FROM " . self::$db_table ." WHERE user_id=$id LIMIT 1");
+    $the_result_array = static::find_this_query("SELECT * FROM " . static::$db_table ." WHERE user_id=$id LIMIT 1");
     return !empty($the_result_array) ? array_shift($the_result_array) : false;
     /*if (!empty($the_result_array)){
       $first_element = array_shift($the_result_array);
@@ -25,20 +25,16 @@ class Db_object {
     $the_object_array = array();
     
     while($row = mysqli_fetch_array($result_set)){
-      $the_object_array[] = self::instantiation($row);
+      $the_object_array[] = static::instantiation($row);
     }
     
     return $the_object_array;
   }
   
   public static function instantiation($the_record){
-    $the_object = new self();
+    $calling_class = get_called_class();
+    $the_object = new $calling_class;
     
-    //$the_object->id = $found_user['user_id'];
-    //$the_object->username = $found_user['username'];
-    //$the_object->password = $found_user['user_password'];
-    //$the_object->firstname = $found_user['user_firstname'];
-    //$the_object->lastname = $found_user['user_lastname'];
     foreach($the_record as $the_attribute => $value){
       if($the_object->has_the_attribute($the_attribute)){
         $the_object->$the_attribute = $value;
@@ -56,7 +52,7 @@ class Db_object {
     //return get_object_vars($this);
     
     $properties = array();
-    foreach(self::$db_table_fields as $db_field){
+    foreach(static::$db_table_fields as $db_field){
       if(property_exists($this, $db_field)){
         $properties[$db_field] = $this->$db_field;
       }
@@ -85,7 +81,7 @@ class Db_object {
     $properties = $this->clean_properties();
     
     
-    $sql = "INSERT INTO " . self::$db_table . "( " . implode(",", array_keys($properties)) .") ";
+    $sql = "INSERT INTO " . static::$db_table . "( " . implode(",", array_keys($properties)) .") ";
     $sql .= "VALUES ('" . implode("', '", array_values($properties)) . "')";
     
     if($database->query($sql)){
@@ -106,7 +102,7 @@ class Db_object {
       $properties_pairs[] = "{$key}='{$value}'"; 
     }
     
-    $sql = "UPDATE users " . self::$db_table . " SET ";
+    $sql = "UPDATE users " . static::$db_table . " SET ";
     $sql .= implode(",", $properties_pairs) . " WHERE user_id = $this->user_id";
     
     
@@ -118,7 +114,7 @@ class Db_object {
   public function delete(){
     global $database;
     
-    $sql = "DELETE FROM " . self::$db_table;
+    $sql = "DELETE FROM " . static::$db_table;
     $sql .= " WHERE user_id = " . $database->escape_string($this->user_id); 
     
     $database->query($sql);
