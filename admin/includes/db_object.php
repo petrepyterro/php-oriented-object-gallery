@@ -1,15 +1,6 @@
 <?php
 
-class User extends Db_object{
-  
-  protected static $db_table = "users";
-  protected static $db_table_fields = array("username", "user_password", "user_firstname", "user_lastname");
-  public $user_id;
-  public $user_password;
-  public $username;
-  public $user_firstname;
-  public $user_lastname;
-  
+class Db_object {
   public static function find_all(){
     return self::find_this_query("SELECT * FROM ". self::$db_table );
   }
@@ -40,18 +31,7 @@ class User extends Db_object{
     return $the_object_array;
   }
   
-  public static function verify_user($username, $password){
-    global $database;
-    
-    $username = $database->escape_string($username);
-    $password = $database->escape_string($password);
-    
-    $sql = "SELECT * FROM " . self::$db_table . " WHERE username='$username' AND user_password='$password' LIMIT 1";
-    $the_result_array = self::find_this_query($sql);
-    return !empty($the_result_array) ? array_shift($the_result_array) : false; 
-  }
-
-    public static function instantiation($the_record){
+  public static function instantiation($the_record){
     $the_object = new self();
     
     //$the_object->id = $found_user['user_id'];
@@ -146,6 +126,3 @@ class User extends Db_object{
     return (mysqli_affected_rows($database->connection)==1) ? TRUE : FALSE;
   }
 }
-
-
-

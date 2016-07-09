@@ -8,13 +8,10 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $user = User::find_user_by_id(8);
-        $user->username = "totalitarianism";
-        $user->user_password = "secret";
-        $user->user_firstname = "Total";
-        $user->user_lastname = "Mital'Obrien";
-        
-        $user->update();
+        $users = User::find_all();
+        foreach($users as $user){
+          echo $user->username;
+        }
       ?>
       <ol class="breadcrumb">
         <li>
