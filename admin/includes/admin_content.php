@@ -8,10 +8,8 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $users = User::find_all();
-        foreach($users as $user){
-          echo $user->username;
-        }
+        $user = User::find_by_id(9);
+        $user->delete();
       ?>
       <ol class="breadcrumb">
         <li>

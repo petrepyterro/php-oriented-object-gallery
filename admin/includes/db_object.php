@@ -2,12 +2,12 @@
 
 class Db_object {
   public static function find_all(){
-    return static::find_this_query("SELECT * FROM ". static::$db_table );
+    return static::find_by_query("SELECT * FROM ". static::$db_table );
   }
   
   public static function find_by_id($id){
     
-    $the_result_array = static::find_this_query("SELECT * FROM " . static::$db_table ." WHERE user_id=$id LIMIT 1");
+    $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table ." WHERE id=$id LIMIT 1");
     return !empty($the_result_array) ? array_shift($the_result_array) : false;
     /*if (!empty($the_result_array)){
       $first_element = array_shift($the_result_array);
@@ -19,7 +19,7 @@ class Db_object {
      */
   }
   
-  public static function find_this_query($sql){
+  public static function find_by_query($sql){
     global $database;
     $result_set = $database->query($sql);
     $the_object_array = array();
@@ -73,7 +73,7 @@ class Db_object {
   }
 
     public function save(){
-    return isset($this->user_id) ? $this->update() : $this->create();
+    return isset($this->id) ? $this->update() : $this->create();
   }
   
   public function create(){
@@ -85,7 +85,7 @@ class Db_object {
     $sql .= "VALUES ('" . implode("', '", array_values($properties)) . "')";
     
     if($database->query($sql)){
-      $this->user_id = $database-> the_insert_id();
+      $this->id = $database-> the_insert_id();
       return TRUE;
     } else {
       return FALSE;
@@ -102,8 +102,8 @@ class Db_object {
       $properties_pairs[] = "{$key}='{$value}'"; 
     }
     
-    $sql = "UPDATE users " . static::$db_table . " SET ";
-    $sql .= implode(",", $properties_pairs) . " WHERE user_id = $this->user_id";
+    $sql = "UPDATE " . static::$db_table . " SET ";
+    $sql .= implode(",", $properties_pairs) . " WHERE id = $this->id";
     
     
     $database->query($sql);
@@ -115,7 +115,7 @@ class Db_object {
     global $database;
     
     $sql = "DELETE FROM " . static::$db_table;
-    $sql .= " WHERE user_id = " . $database->escape_string($this->user_id); 
+    $sql .= " WHERE id = " . $database->escape_string($this->id); 
     
     $database->query($sql);
     
