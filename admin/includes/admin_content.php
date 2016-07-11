@@ -8,8 +8,34 @@
         <small>Subheading</small>
       </h1>
       <?php 
-        $user = User::find_by_id(9);
-        $user->delete();
+        /*
+        $photos = Photo::find_all();
+        foreach($photos as $photo){
+          echo $photo->photo_title;
+        }
+         * 
+         */
+        
+        /*
+        $photo = new Photo();
+        $photo->photo_title = "Belgium";
+        $photo->photo_size = 20;
+        
+        $photo->save();
+         * 
+         */
+      
+        /*
+        $photo = Photo::find_by_id(2);
+        $photo->photo_filename = "large_image.jpg";
+        
+        $photo->save();
+        * 
+        */
+      
+        $photo = Photo::find_by_id(2);
+        $photo->delete();
+        
       ?>
       <ol class="breadcrumb">
         <li>
