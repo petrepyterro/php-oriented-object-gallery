@@ -38,7 +38,7 @@
         $photo->delete();
          * 
          */
-        
+         echo INCLUDES_PATH;
       ?>
       <ol class="breadcrumb">
         <li>
