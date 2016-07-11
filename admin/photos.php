@@ -1,4 +1,6 @@
 <?php include("includes/header.php"); ?>
+<?php if(!$session->is_signed_in()) {redirect("login.php");} ?>
+<?php $photos = Photo::find_all(); ?>
 
   <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -23,14 +25,30 @@
            Photos
             <small>Subheading</small>
           </h1>
-          <ol class="breadcrumb">
-            <li>
-              <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-            </li>
-            <li class="active">
-              <i class="fa fa-file"></i> Blank Page
-            </li>
-          </ol>
+          <div class="col-md-12">
+            <table>
+              <thead>
+                <tr class="table table-hover">
+                  <th>Photo</th>
+                  <th>Id</th>
+                  <th>File Name</th>
+                  <th>Title</th>
+                  <th>Size</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach($photos as $photo) : ?>
+                <tr>
+                  <td><img src="http://placehold.it/62x62" alt=""/></td>
+                  <td><?php echo $photo->id; ?></td>
+                  <td><?php echo $photo->photo_filename; ?></td>
+                  <td><?php echo $photo->photo_title; ?></td>
+                  <td><?php echo $photo->photo_size; ?></td>
+                </tr>
+              <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <!-- /.row -->
