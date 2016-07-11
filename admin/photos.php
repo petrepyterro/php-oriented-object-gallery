@@ -39,7 +39,7 @@
               <tbody>
               <?php foreach($photos as $photo) : ?>
                 <tr>
-                  <td><img src="http://placehold.it/62x62" alt=""/></td>
+                  <td><img src="<?php echo $photo->picture_path(); ?>" alt=""/></td>
                   <td><?php echo $photo->id; ?></td>
                   <td><?php echo $photo->photo_filename; ?></td>
                   <td><?php echo $photo->photo_title; ?></td>

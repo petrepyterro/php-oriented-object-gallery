@@ -26,7 +26,7 @@
          */
       
         /*
-        $photo = Photo::find_by_id(2);
+        $photo = Photo::find_by_id(1);
         $photo->photo_filename = "large_image.jpg";
         
         $photo->save();
