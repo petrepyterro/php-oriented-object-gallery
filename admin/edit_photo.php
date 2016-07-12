@@ -11,6 +11,8 @@
         $photo->photo_caption = $_POST['photo_caption'];
         $photo->photo_alternate_text = $_POST['photo_alternate_text'];
         $photo->photo_description = $_POST['photo_description'];
+        
+        $photo->save();
       }
     }
   }
@@ -42,6 +44,9 @@
             <div class="col-md-8">
               <div class="form-group">
                 <input type="text" name="photo_title" class="form-control" value="<?php echo $photo->photo_title; ?>"/>
+              </div>
+              <div class="form-group">
+                <a class="thumbnail" href="#"><img src="<?php echo $photo->picture_path(); ?>" alt="" /></a>
               </div>
               <div class="form-group">
                 <label for="photo_caption">Caption</label>
