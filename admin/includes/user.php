@@ -17,6 +17,17 @@ class User extends Db_object{
     return empty($this->user_image) ? $this->image_placeholder : $this->upload_directory . DS . $this->user_image;
   }
 
+  public function delete_user(){
+    if($this->delete()){
+      if(!empty($this->user_image)){
+        $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->user_image;
+        return unlink($target_path) ? TRUE : FALSE;
+      }
+    } else {
+      return FALSE;
+    }
+  }
+
   public static function verify_user($username, $password){
     global $database;
     
