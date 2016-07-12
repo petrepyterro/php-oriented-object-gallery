@@ -1,8 +1,17 @@
 <?php include("includes/header.php"); ?>
 <?php if(!$session->is_signed_in()) {redirect("login.php");} ?>
 <?php 
+  $user = new User();
   if(isset($_POST['create'])){
-    
+    if($user){
+      $user->username = $_POST['username'];
+      $user->user_firstname = $_POST['user_firstname'];
+      $user->user_lastname = $_POST['user_lastname'];
+      $user->user_password = $_POST['user_password'];
+      
+      $user->set_file($_FILES['uploaded_file']);
+      $user->save_user_and_image();
+    }
   }
 ?>
 
