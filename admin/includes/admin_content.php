@@ -33,11 +33,7 @@
         * 
         */
       
-        /*
-        $photo = Photo::find_by_id(2);
-        $photo->delete();
-         * 
-         */
+        
       ?>
       <ol class="breadcrumb">
         <li>

@@ -109,6 +109,10 @@ class Db_object {
     return (mysqli_affected_rows($database->connection)==1) ? TRUE : FALSE;
   }
   
+  public function save(){
+    return isset($this->id) ? $this->update() : $this->create();
+  }
+  
   public function delete(){
     global $database;
     
