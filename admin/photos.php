@@ -26,9 +26,9 @@
             <small>Subheading</small>
           </h1>
           <div class="col-md-12">
-            <table>
+            <table class="table table-hover">
               <thead>
-                <tr class="table table-hover">
+                <tr >
                   <th>Photo</th>
                   <th>Id</th>
                   <th>File Name</th>
@@ -39,7 +39,14 @@
               <tbody>
               <?php foreach($photos as $photo) : ?>
                 <tr>
-                  <td><img src="<?php echo $photo->picture_path(); ?>" alt=""/></td>
+                  <td>
+                    <img src="<?php echo $photo->picture_path(); ?>" alt=""/>
+                    <div class="picture_link">
+                      <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
+                      <a href="#">Edit</a>
+                      <a href="#">View</a>
+                    </div>
+                  </td>
                   <td><?php echo $photo->id; ?></td>
                   <td><?php echo $photo->photo_filename; ?></td>
                   <td><?php echo $photo->photo_title; ?></td>
