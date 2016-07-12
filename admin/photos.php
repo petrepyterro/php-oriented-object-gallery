@@ -40,7 +40,7 @@
               <?php foreach($photos as $photo) : ?>
                 <tr>
                   <td>
-                    <img src="<?php echo $photo->picture_path(); ?>" alt=""/>
+                    <img class="admin-photo-thumbnail" src="<?php echo $photo->picture_path(); ?>" alt=""/>
                     <div class="picture_link">
                       <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
                       <a href="edit_photo.php?id=<?php echo $photo->id; ?>">Edit</a>
