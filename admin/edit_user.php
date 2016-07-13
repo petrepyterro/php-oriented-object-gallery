@@ -74,6 +74,7 @@
                 <input type="password" name="user_password" value="<?php echo $user->user_password; ?>" class="form-control"/>
               </div>
               <div class="form-group">
+                <a href="delete_user.php?id=<?php echo $user->id; ?>" class="btn btn-danger">Delete</a>
                 <input type="submit" name="update" value="Update" class="btn btn-primary pull-right"/>
               </div>
             </div>  
