@@ -13,15 +13,14 @@
       $user->user_lastname = $_POST['user_lastname'];
       $user->user_password = $_POST['user_password'];
 
-      if($user->set_file($_FILES['uploaded_file'])){
+      if(!empty($_FILES['uploaded_file'])){
         if(!empty($user_image)){
           unlink(SITE_ROOT . DS . 'admin' . DS . $user->upload_directory . DS . $user_image);
         }
-        $user->save_user_and_image();
-      } else {
-        $user->save();
-      };
-      
+        $user->set_file($_FILES['uploaded_file']);
+        $user->upload_photo();
+      } 
+      $user->save();
     }
   }    
   
