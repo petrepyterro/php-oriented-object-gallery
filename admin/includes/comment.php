@@ -2,7 +2,7 @@
 
 class Comment extends Db_object{
   
-  protected static $db_table = "users";
+  protected static $db_table = "comments";
   protected static $db_table_fields = array("id", "photo_id", "author", "body");
   public $id;
   public $photo_id;
@@ -39,6 +39,15 @@ class Comment extends Db_object{
     }
   }
   
+  public static function find_the_comments($photo_id=0){
+    global $database;
+    
+    $sql = "SELECT * FROM " . self::$db_table . " WHERE photo_id=";
+    $sql .= $database->escape_string($photo_id);
+    $sql .= " ORDER BY photo_id ASC";
+    
+    return self::find_by_query($sql);
+  }
  }
 
 
