@@ -18,16 +18,17 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Language', 'Speakers (in millions)'],
-          ['German',  5.85],
-          ['French',  1.66],
-          ['Italian', 0.316],
-          ['Romansh', 0.0791]
+          ['Views', <?php echo $session->count; ?>],
+          ['Comments', <?php echo Comment::count_all(); ?>],
+          ['Users', <?php echo User::count_all(); ?>],
+          ['Photos',  <?php echo Photo::count_all(); ?>]
         ]);
 
       var options = {
         legend: 'none',
         pieSliceText: 'label',
         title: 'Swiss Language Use (100 degree rotation)',
+        backgroundColor: 'transparent',
         pieStartAngle: 100,
       };
 
