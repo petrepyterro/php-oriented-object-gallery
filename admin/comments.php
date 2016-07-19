@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h1 class="page-header">
-           Comments
+           All Comments
           </h1>
           <div class="col-md-12">
             <table class="table table-hover">
