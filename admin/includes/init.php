@@ -14,3 +14,4 @@ require_once INCLUDES_PATH . "user.php";
 require_once INCLUDES_PATH . "photo.php";
 require_once INCLUDES_PATH . "comment.php";
 require_once INCLUDES_PATH . "session.php";
+require_once INCLUDES_PATH . "paginate.php";
