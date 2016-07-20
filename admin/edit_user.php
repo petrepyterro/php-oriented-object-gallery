@@ -15,9 +15,6 @@
       $user->user_password = $_POST['user_password'];
 
       if(!empty($_FILES['uploaded_file'])){
-        if(!empty($user_image)){
-          unlink(SITE_ROOT . DS . 'admin' . DS . $user->upload_directory . DS . $user_image);
-        }
         $user->set_file($_FILES['uploaded_file']);
         $user->upload_photo();
       } 
@@ -48,7 +45,7 @@
       <div class="row">  
         <div class="col-lg-12">
           <h1 class="page-header">
-            Photos<small>Subheading</small>
+            Users<small></small>
           </h1>
           <div class="col-md-6">
             <a href="" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt="" /></a>

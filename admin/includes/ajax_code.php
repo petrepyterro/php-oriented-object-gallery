@@ -2,7 +2,9 @@
 
 require_once 'init.php';
 
-if(isset($_POST['image_name'])){
-  echo "this is data from the server.";
+$user = new User();
+
+if(isset($_POST['user_image'])){
+  $user->ajax_save_user_image($_POST['user_image'], $_POST['user_id']);
 }
 

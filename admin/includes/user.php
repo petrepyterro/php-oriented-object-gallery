@@ -12,7 +12,7 @@ class User extends Db_object{
   
   public $tmp_path;
   public $user_image;
-  public $upload_directory = "images" . DS . "users";
+  public $upload_directory = "images";
   public $image_placeholder = "http://placehold.it/400x400&text=image";
   public $errors;
   public $upload_errors_array = array(
@@ -90,6 +90,12 @@ class User extends Db_object{
       $this->errors[] = "The file directory probably does not have permission";
       return FALSE;
     }
+  }
+  
+  public function ajax_save_user_image($user_image, $user_id) {
+    $this->user_image = $user_image;
+    $this->id = $user_id;
+    $this->save();
   }
  }
 
