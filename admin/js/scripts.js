@@ -16,7 +16,20 @@ $(document).ready(function(){
     image_src_splitted = image_src.split("/");
     image_name = image_src_splitted[image_src_splitted.length - 1];
     
-    alert(image_name);
+    
+  });
+  
+  $("#set_user_image").click(function(){
+    $.ajax({
+      url: "includes/ajax_code.php",
+      data: {image_name: image_name, user_id: user_id},
+      type: "POST",
+      success: function(data){
+        if(!data.error){
+          alert(image_name);
+        }
+      }
+    });
   });
   
   tinymce.init({selector: 'textarea'});
