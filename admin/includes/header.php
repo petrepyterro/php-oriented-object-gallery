@@ -17,8 +17,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dropzone.css" />
     
     <!-- Custom CSS -->
     <link  href="css/styles.css" rel="stylesheet"/>

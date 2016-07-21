@@ -9,6 +9,8 @@
     
     <!-- WYSIWYG editor -->
     <script src="http://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    
+    <script type="text/javascript" src="js/dropzone.js"></script>
 
     <script src="js/scripts.js"></script>
     
