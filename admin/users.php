@@ -21,6 +21,7 @@
       <!-- Page Heading -->
       <div class="row">
         <div class="col-lg-12">
+          <p class="btn-success"><?php echo $message; ?></p>
           <h1 class="page-header">
            Users
           </h1>

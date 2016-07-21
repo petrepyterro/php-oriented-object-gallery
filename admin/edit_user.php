@@ -19,6 +19,8 @@
         $user->upload_photo();
       } 
       $user->save();
+      $session->message("The user has been updated.");
+      redirect("users.php");
     }
   }    
   
