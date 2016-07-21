@@ -28,10 +28,12 @@
       <!-- Page Heading -->
       <div class="row">
         <div class="col-lg-12">
+          <p class="bg-success"><?php echo $message; ?></p>
           <h1 class="page-header">
             <p>Comments for photo</p>
             <img class="admin-photo-thumbnail" src="<?php echo $photo->picture_path(); ?>" alt=""/>
           </h1>
+          
           <div class="col-md-12">
             <table class="table table-hover">
               <thead>

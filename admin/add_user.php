@@ -11,7 +11,9 @@
       
       $user->set_file($_FILES['uploaded_file']);
       $user->upload_photo();
+      $session->message("The {$user->username} has been added.");
       $user->save();
+      redirect("users.php");
     }
   }
 ?>

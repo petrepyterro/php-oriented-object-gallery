@@ -13,6 +13,8 @@
         $photo->photo_description = $_POST['photo_description'];
         
         $photo->save();
+        $session->message("The {$photo->photo_filename} photo has been updated.");
+        redirect("photos.php");
       }
     }
   }

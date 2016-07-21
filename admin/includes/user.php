@@ -36,6 +36,7 @@ class User extends Db_object{
         $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->user_image;
         return unlink($target_path) ? TRUE : FALSE;
       }
+      return TRUE;
     } else {
       return FALSE;
     }
@@ -107,7 +108,8 @@ class User extends Db_object{
     
     echo $this->image_path_and_placeholder();
   }
- }
+  
+}
 
 
 
