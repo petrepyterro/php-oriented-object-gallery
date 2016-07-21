@@ -7,6 +7,7 @@ $(document).ready(function(){
   var image_name;
   var photo_id;
   
+  
   $(".modal_thumbnails").click(function(){
     $("#set_user_image").prop("disabled", false);
     user_href = $("#user-id").prop('href');
@@ -43,6 +44,12 @@ $(document).ready(function(){
       }
     });
   });
+  /************** Edit Photo Sidebar ******************/
+  $('.info-box-header').click(function(){
+    $('.inside').slideToggle("fast");
+    $("#toggle").toggleClass("glyphicon glyphicon-menu-down , glyphicon glyphicon-menu-up");
+  });
+  
   
   tinymce.init({selector: 'textarea'});
 });
